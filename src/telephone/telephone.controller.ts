@@ -1,0 +1,13 @@
+import { Controller, Get, Param } from '@nestjs/common';
+import { TelephoneService } from './telephone.service';
+
+@Controller('telephone')
+export class TelephoneController {
+
+    constructor(private readonly telephoneService: TelephoneService ){}
+
+    @Get(':k')
+    dialUp(@Param('k') k: string ){
+        return this.telephoneService.dial(k);
+    }
+}
