@@ -12,7 +12,6 @@ export class TelephoneService {
         const marcar = await fetch(`${this.base_url}${key}`, {
             headers: this.headers
         });
-        console.log(marcar);
     }
 
 }
