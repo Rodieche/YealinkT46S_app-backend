@@ -13,7 +13,7 @@ export class TelephoneController {
 
     @Get('incomingCall')
     incomingCall(@Query() query: Response){
-        this.ws.onIncomeCallWss(query['PHONE'], query['NAME']);
+        this.ws.onIncomeCallWss(query['IP'], query['PHONE'], query['NAME']);
         console.log(query);
     }
 
