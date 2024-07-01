@@ -1,12 +1,13 @@
-import { OnGatewayConnection, OnGatewayDisconnect, WebSocketGateway } from '@nestjs/websockets';
+import { OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { MessagesWsService } from './messages-ws.service';
-import { Socket } from 'socket.io';
+import { Server, Socket } from 'socket.io';
 
-@WebSocketGateway({cors: true})
+@WebSocketGateway({ cors: true })
 export class MessagesWsGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  constructor(
-    private readonly messagesWsService: MessagesWsService
-  ) {}
+
+  @WebSocketServer() wss: Server;
+
+  constructor() {}
 
   handleDisconnect(client: Socket) {
     console.log('Client disconnected:', client.id);
@@ -14,6 +15,12 @@ export class MessagesWsGateway implements OnGatewayConnection, OnGatewayDisconne
 
   handleConnection(client: Socket) {
     console.log('Client connected:', client.id);
+  }
+
+  @SubscribeMessage('incomingCall')
+  onIncomeCallWss(callerNumber: string, callerId?: string) {
+    console.log('Event Emmited!');
+    this.wss.emit('incomingCall', [callerNumber, callerId]);
   }
 
 }
