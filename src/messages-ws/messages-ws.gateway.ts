@@ -10,11 +10,11 @@ export class MessagesWsGateway implements OnGatewayConnection, OnGatewayDisconne
   constructor() {}
 
   handleDisconnect(client: Socket) {
-    console.log('Client disconnected:', client.id);
+    // console.log('Client disconnected:', client.id);
   }
 
   handleConnection(client: Socket) {
-    console.log('Client connected:', client.id);
+    // console.log('Client connected:', client.id);
   }
 
   @SubscribeMessage('incomingCall')
@@ -25,6 +25,11 @@ export class MessagesWsGateway implements OnGatewayConnection, OnGatewayDisconne
   @SubscribeMessage('outgoingCall')
   onOutgoingWss(ip: string, callerNumber: string, callerId?: string) {
     this.wss.emit('outgoingCall', {ip, callerNumber, callerId});
+  }
+
+  @SubscribeMessage('terminateCall')
+  onTerminateCallWss(ip: string) {
+    this.wss.emit('terminateCall', {ip});
   }
 
 

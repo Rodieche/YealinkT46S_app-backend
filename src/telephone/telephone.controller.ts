@@ -17,7 +17,6 @@ export class TelephoneController {
             query['NAME'] = 'Unknown';
         }
         this.ws.onIncomeCallWss(query['IP'], query['PHONE'], query['NAME']);
-        console.log(query);
     }
 
     @Get('outgoingCall')
@@ -26,7 +25,11 @@ export class TelephoneController {
             query['NAME'] = 'Unknown';
         }
         this.ws.onOutgoingWss(query['IP'], query['PHONE'], query['NAME']);
-        console.log(query);
+    }
+
+    @Get('terminateCall')
+    terminateCall(@Query() query: Response){
+        this.ws.onTerminateCallWss(query['IP']);
     }
 
     @Get(':k')
