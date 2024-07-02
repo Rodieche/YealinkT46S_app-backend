@@ -13,12 +13,19 @@ export class TelephoneController {
 
     @Get('incomingCall')
     incomingCall(@Query() query: Response){
+        if(query['PHONE'] == query['NAME']){
+            query['NAME'] = 'Unknown';
+        }
         this.ws.onIncomeCallWss(query['IP'], query['PHONE'], query['NAME']);
         console.log(query);
     }
 
     @Get('outgoingCall')
     outgoingCall(@Query() query: Response){
+        if(query['PHONE'] == query['NAME']){
+            query['NAME'] = 'Unknown';
+        }
+        this.ws.onOutgoingWss(query['IP'], query['PHONE'], query['NAME']);
         console.log(query);
     }
 

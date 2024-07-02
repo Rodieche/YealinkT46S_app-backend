@@ -19,14 +19,12 @@ export class MessagesWsGateway implements OnGatewayConnection, OnGatewayDisconne
 
   @SubscribeMessage('incomingCall')
   onIncomeCallWss(ip: string, callerNumber: string, callerId?: string) {
-    console.log('Event Emmited!');
     this.wss.emit('incomingCall', {ip, callerNumber, callerId});
   }
 
   @SubscribeMessage('outgoingCall')
-  onOutgoingWss(callerNumber: string, callerId?: string) {
-    console.log('Event Emmited!');
-    this.wss.emit('outgoingCall', {callerNumber, callerId});
+  onOutgoingWss(ip: string, callerNumber: string, callerId?: string) {
+    this.wss.emit('outgoingCall', {ip, callerNumber, callerId});
   }
 
 
