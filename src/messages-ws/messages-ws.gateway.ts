@@ -10,11 +10,11 @@ export class MessagesWsGateway implements OnGatewayConnection, OnGatewayDisconne
   constructor() {}
 
   handleDisconnect(client: Socket) {
-    // console.log('Client disconnected:', client.id);
+    console.log('Client disconnected:', client.id);
   }
 
   handleConnection(client: Socket) {
-    // console.log('Client connected:', client.id);
+    console.log('Client connected:', client.id);
   }
 
   @SubscribeMessage('incomingCall')
@@ -23,13 +23,38 @@ export class MessagesWsGateway implements OnGatewayConnection, OnGatewayDisconne
   }
 
   @SubscribeMessage('outgoingCall')
-  onOutgoingWss(ip: string, callerNumber: string, callerId?: string) {
+  onOutgoingCallWss(ip: string, callerNumber: string, callerId?: string) {
     this.wss.emit('outgoingCall', {ip, callerNumber, callerId});
+  }
+
+  @SubscribeMessage('establichedCall')
+  onEstablishedCallWss(ip: string) {
+    this.wss.emit('establichedCall', {ip});
   }
 
   @SubscribeMessage('terminateCall')
   onTerminateCallWss(ip: string) {
     this.wss.emit('terminateCall', {ip});
+  }
+
+  @SubscribeMessage('mute')
+  onMuteWss(ip: string) {
+    this.wss.emit('mute', {ip});
+  }
+
+  @SubscribeMessage('unMute')
+  onUnMuteWss(ip: string) {
+    this.wss.emit('unMute', {ip});
+  }
+
+  @SubscribeMessage('headset')
+  onHeadsetWss(ip: string) {
+    this.wss.emit('headset', {ip});
+  }
+
+  @SubscribeMessage('handsfree')
+  onHandsfreeWss(ip: string) {
+    this.wss.emit('handsfree', {ip});
   }
 
 
