@@ -1,6 +1,5 @@
-import { Controller, Get, Param, Query, Res } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { TelephoneService } from './telephone.service';
-import { OnIncomeCall } from 'src/plugins';
 import { MessagesWsGateway } from 'src/messages-ws/messages-ws.gateway';
 
 interface IQuery extends Response {
@@ -24,8 +23,6 @@ export class TelephoneController {
         private readonly ws: MessagesWsGateway
     ){}
 
-
-
     @Get('incomingCall')
     incomingCall(@Query() query: IQuery){
         const ip = query.IP;
@@ -42,9 +39,8 @@ export class TelephoneController {
         this.ws.onOutgoingCallWss(ip, phone, name);
     }
 
-    @Get('establichedCall')
+    @Get('establishedCall')
     establishedCall(@Query() query: IQuery){
-        console.log(query);
         const ip = query.IP;
         this.ws.onEstablishedCallWss(ip);
     }

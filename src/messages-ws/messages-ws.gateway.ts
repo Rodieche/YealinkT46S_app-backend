@@ -27,9 +27,9 @@ export class MessagesWsGateway implements OnGatewayConnection, OnGatewayDisconne
     this.wss.emit('outgoingCall', {ip, callerNumber, callerId});
   }
 
-  @SubscribeMessage('establichedCall')
+  @SubscribeMessage('establishedCall')
   onEstablishedCallWss(ip: string) {
-    this.wss.emit('establichedCall', {ip});
+    this.wss.emit('establishedCall', {ip});
   }
 
   @SubscribeMessage('terminateCall')
