@@ -24,7 +24,7 @@ It was tested on Yealink T46S model
 - [X] Incoming Calls function
 - [X] Outgoing Calls function
 - [X] Terminated or Cancellated Calls function
-- [ ] Established Calls function
+- [X] Established Calls function
 - [ ] Mute / Unmute function
 - [ ] OnHook / OffHook function
 - [ ] OpenDND / CloseDND function
@@ -37,6 +37,7 @@ It was tested on Yealink T46S model
 - [ ] Headset function
 - [ ] Handsfree function
 - [ ] Peripheral Information
+- [ ] Local Database 
 
 # GUI
 https://github.com/Rodieche/YealinkT46S_app-frontend.git
