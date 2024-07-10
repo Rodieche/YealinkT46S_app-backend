@@ -1,0 +1,27 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "git pull",
+            "type": "shell",
+            "command": "git pull",
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "start:dev",
+            "type": "shell",
+            "command": "npm run start:dev",
+            "presentation": {
+                "panel": "dedicated",
+                "group": "dev"
+            },
+            "runOptions": {
+                "runOn": "folderOpen"
+            },
+            "dependsOn": ["git pull"]
+        }
+    ]
+}
