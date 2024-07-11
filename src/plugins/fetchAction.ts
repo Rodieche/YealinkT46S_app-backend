@@ -13,7 +13,8 @@ export const fetchAction = async (action: string) => {
             headers: headers
         });
     }catch(e){
-        throw new Error('Error on telephone connection');
+        console.log(e)
+        // throw new Error('Error on telephone connection');
     }
 
 }
